@@ -1,0 +1,46 @@
+import urllib.request
+#Imports a library into the program and will later be used to find online URLs and download data from them
+import os
+#Imports the ability to search for a document that exists in the current directory
+
+path= './http_access_log.txt'
+#provides the relative pathing to solve the next step
+exists = os.path.exists(path)
+#runs a scan to check if the file is in the path given
+if exists == False:
+#if a false is given then the URL is searched out and the program downloads the inforation requested
+    print("Uh oh, looks like you're missing a file, lets download that!")
+
+    url = 'https://s3.amazonaws.com/tcmg476/http_access_log'
+    urllib.request.urlretrieve(url,'./http_access_log.txt')
+
+    print("Download complete!")
+    user_input = ("Would you like to run an analysis? Yes or No: ")
+    if user_input == 'Yes' or 'yes':
+        file = open("http_access_log.txt")
+        data = file.read()
+        occurrences1 = data.count("1994")
+        #counts the data with the set parameters of 1994 and is repeated for 1995 and saves them as two variables
+        occurrences2 = data.count("1995")
+        print('Times data was accessed 1994:', occurrences1)
+        print('Times data was accessed in 1994 and 1995:', occurrences1 + occurrences2)
+    else:
+        print("Looks like you said no, goodbye!")
+
+
+#if the file is already in the working directory, the program will start here:
+else:
+    print("Howdy! It seems you want some data analyzed, Let's get started!")
+
+
+    answer = input("Please type Yes or No to continue: ")
+    if answer == 'Yes' or answer == "yes":
+        print ("One moment, let me process your request")
+        file= open("http_access_log.txt")
+        data = file.read()
+        occurrences = data.count("1994")
+        occurrences2 = data.count("1995")
+        print('The number of requests made in 1994 was:', occurrences)
+        print('The number of requests made in 1994 and 1995 was:', occurrences+occurrences2)
+    else:
+        print("You have selected no. Have a nice day")
