@@ -1,3 +1,4 @@
+#Lukas Boeck (127008114) TCMG 412  
 import urllib.request
 #Imports a library into the program and will later be used to find online URLs and download data from them
 import os
